@@ -6,12 +6,10 @@
     <title>Mon Panier</title>
     <link rel="stylesheet" href="../style/panier.css">
 </head>
-<body>
-    <!-- En-tête -->
-    <header>
-        <h1>Mon Panier</h1>
-    </header>
 
+<?php include 'header.php'?>
+
+<body>
     <!-- Section panier -->
     <main class="panier-container">
         <table class="panier-table">
@@ -50,12 +48,8 @@
             <button id="passer-commande" class="btn">Passer la Commande</button>
         </div>
     </main>
-
-    <!-- Pied de page -->
-    <footer>
-        <p>&copy; 2024 Boutique en Ligne. Tous droits réservés.</p>
-    </footer>
-
-    <script src="panier.js"></script>
 </body>
+
+<?php include 'footer.php'?>
+
 </html>

@@ -8,13 +8,10 @@
     <link rel="stylesheet" href="../style/home.css">
 
 </head>
-<body>
-    <!-- En-tête de la page -->
-    <header>
-        <h1>Bienvenue sur notre boutique</h1>
-        <p>Découvrez nos derniers articles en vente</p>
-    </header>
 
+<?php include 'header.php'?>
+
+<body>
     <!-- Conteneur principal des articles -->
     <main class="articles-container">
         <!-- Article 1 -->
@@ -54,9 +51,6 @@
         </div>
     </main>
 
-    <!-- Pied de page -->
-    <footer>
-        <p>&copy; 2024 Notre Boutique. Tous droits réservés.</p>
-    </footer>
 </body>
+    <?php include 'footer.php' ?>
 </html>

@@ -1,0 +1,23 @@
+/* Style général du body */
+body {
+    display: flex;
+    flex-direction: column; /* Aligne les éléments (header, main, footer) en colonne */
+    min-height: 100vh; /* Prend au moins toute la hauteur de l'écran */
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Conteneur principal de la page */
+main {
+    flex-grow: 1; /* Le main prend tout l'espace disponible entre l'en-tête et le footer */
+}
+
+/* Pied de page */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2rem;
+    /* Optionnel : rendre le footer plus distinct */
+}

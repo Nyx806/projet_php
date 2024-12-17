@@ -7,13 +7,10 @@
     <!-- Lien vers le fichier CSS -->
     <link rel="stylesheet" href="../style/vente.css">
 </head>
-<body>
-    <!-- En-tête -->
-    <header>
-        <h1>Ajouter un Article à la Vente</h1>
-        <p>Remplissez le formulaire ci-dessous pour mettre un nouvel article en vente.</p>
-    </header>
 
+<?php include 'header.php' ?>
+
+<body>
     <!-- Formulaire de création d'article -->
     <main class="form-container">
         <form action="traitement_vente.php" method="POST" enctype="multipart/form-data" class="form-vente">
@@ -63,10 +60,6 @@
             <button type="submit" class="btn">Ajouter l'Article</button>
         </form>
     </main>
-
-    <!-- Pied de page -->
-    <footer>
-        <p>&copy; 2024 Boutique en Ligne. Tous droits réservés.</p>
-    </footer>
 </body>
+<?php include 'footer.php' ?>
 </html>
