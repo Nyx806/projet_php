@@ -14,8 +14,29 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient de fond */
     color: #333;
+    padding: 0 1rem; /* Ajout d'un padding pour éviter que le contenu soit collé sur les bords */
+    position: relative; /* Nécessaire pour positionner le bouton en haut à gauche */
+}
+
+/* Bouton Home en haut à gauche */
+.home-btn {
+    position: absolute; /* Positionnement absolu pour le placer en haut à gauche */
+    top: 1rem;
+    left: 1rem;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #6a11cb;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.home-btn:hover {
+    background-color: #501aa8;
 }
 
 /* Conteneur principal */

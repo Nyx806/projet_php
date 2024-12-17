@@ -6,9 +6,11 @@
     <title>Page d'Inscription</title>
     <!-- Lien vers le fichier CSS -->
     <link rel="stylesheet" href="../style/inscription.css">
-
 </head>
 <body>
+    <!-- Bouton Home en haut à gauche -->
+    <a href="home.php" class="home-btn">Home</a>
+
     <div class="signup-container">
         <form action="#" method="POST" class="signup-form">
             <h2>Créer un compte</h2>
@@ -42,10 +44,9 @@
 
             <!-- Lien pour se connecter si déjà inscrit -->
             <div class="links">
-                <p>Vous avez déjà un compte ? <a href="#">Connectez-vous</a></p>
+                <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous</a></p>
             </div>
         </form>
     </div>
 </body>
-
 </html>

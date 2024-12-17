@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="../style/login.css">
 </head>
 <body>
+
+    <!-- Bouton Home en haut à gauche -->
+    <div class="navbar">
+        <a href="home.php" class="home-btn">Home</a>
+    </div>
+
     <div class="login-container">
         <form action="#" method="POST" class="login-form">
             <h2>Connexion</h2>
@@ -28,10 +34,11 @@
 
             <!-- Lien pour s'inscrire ou récupérer un mot de passe -->
             <div class="links">
-                <a href="#">Mot de passe oublié ?</a>
-                <a href="#">Créer un compte</a>
+                <a href="">Mot de passe oublié ?</a>
+                <a href="inscription.php">Créer un compte</a>
             </div>
         </form>
     </div>
+
 </body>
 </html>

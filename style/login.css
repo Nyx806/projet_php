@@ -14,8 +14,29 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #4a90e2, #50c5b7);
+    background: linear-gradient(135deg, #4a90e2, #50c5b7); /* Gradient de fond */
     color: #333;
+    padding: 0 1rem; /* Ajout d'un padding pour éviter que le contenu soit collé sur les bords */
+    position: relative; /* Permet de positionner le bouton en haut à gauche */
+}
+
+/* Bouton Home en haut à gauche */
+.home-btn {
+    position: absolute; /* Positionnement absolu pour le placer en haut à gauche */
+    top: 1rem;
+    left: 1rem;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4a90e2;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.home-btn:hover {
+    background-color: #357ab8;
 }
 
 /* Conteneur principal */
@@ -23,9 +44,9 @@ body {
     background-color: #fff;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 350px;
-    max-width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Légère amélioration de l'ombre */
+    width: 100%;
+    max-width: 400px; /* Un peu plus large pour une meilleure lisibilité */
     text-align: center;
 }
 
@@ -55,6 +76,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
+    transition: border-color 0.3s ease; /* Transition plus fluide */
 }
 
 .input-group input:focus {

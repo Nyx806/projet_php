@@ -1,0 +1,116 @@
+/* Importation de la police Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Style général du body */
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* En-tête */
+header {
+    background-color: #4a90e2;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 1rem;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+}
+
+/* Conteneur principal du produit */
+.product-detail-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Style de l'image du produit */
+.product-image img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Style des informations du produit */
+.product-info {
+    max-width: 500px;
+}
+
+.product-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.product-info .price {
+    font-size: 1.5rem;
+    color: #4a90e2;
+    margin: 1rem 0;
+}
+
+.product-info .description {
+    font-size: 1rem;
+    color: #555;
+    margin: 1rem 0;
+}
+
+.product-info .availability {
+    font-size: 1rem;
+    color: green;
+    margin: 1rem 0;
+}
+
+.product-info form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.product-info input[type="number"] {
+    width: 60px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.product-info button {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-info button:hover {
+    background-color: #357ab8;
+}
+
+/* Pied de page */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2rem;
+}

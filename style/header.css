@@ -1,15 +1,124 @@
-/* En-tête */
-header {
-    background-color: #4a90e2;
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style de la navbar */
+.navbar {
+    background-color: #4a90e2; /* Couleur de fond bleu */
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
     color: #fff;
-    text-align: center;
-    padding: 1.5rem 1rem;
+    text-decoration: none;
+    font-weight: 700;
 }
 
-header h1 {
-    margin-bottom: 0.5rem;
+.nav-links {
+    list-style-type: none;
+    display: flex;
+    gap: 1.5rem;
 }
 
-header p {
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
     font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #f9f9f9; /* Couleur au survol */
+}
+
+/* Styles responsive pour les petits écrans */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 60%;
+        height: 100vh;
+        background-color: #4a90e2;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        transition: right 0.3s ease-in-out;
+    }
+
+    .nav-links.open {
+        right: 0;
+    }
+
+    .navbar .container {
+        justify-content: space-between;
+    }
+
+    .navbar .container .logo {
+        font-size: 1.5rem;
+    }
+
+    .nav-links a {
+        font-size: 1.4rem;
+    }
+
+    .hamburger {
+        display: block;
+        background-color: #fff;
+        width: 25px;
+        height: 3px;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger:before,
+    .hamburger:after {
+        content: '';
+        background-color: #fff;
+        width: 25px;
+        height: 3px;
+        position: absolute;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger:before {
+        top: -8px;
+    }
+
+    .hamburger:after {
+        top: 8px;
+    }
+
+    .hamburger.open {
+        transform: rotate(45deg);
+    }
+
+    .hamburger.open:before {
+        top: 0;
+        transform: rotate(90deg);
+    }
+
+    .hamburger.open:after {
+        top: 0;
+        transform: rotate(90deg);
+    }
 }

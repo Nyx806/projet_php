@@ -1,0 +1,164 @@
+/* Importation de la police Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Style général du body */
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* En-tête */
+header {
+    background-color: #4a90e2;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 1rem;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+}
+
+/* Conteneur principal du compte */
+.account-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Section des informations personnelles */
+.user-info {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.user-info .info-field {
+    margin-bottom: 1rem;
+}
+
+.user-info label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.user-info input[type="text"],
+.user-info input[type="email"],
+.user-info input[type="password"] {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.user-info button {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.user-info button:hover {
+    background-color: #357ab8;
+}
+
+/* Section des articles publiés */
+.my-articles,
+.my-purchases {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.my-articles h2,
+.my-purchases h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.articles-list,
+.purchases-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+/* Style d'un article ou achat */
+.article,
+.purchase {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.article img,
+.purchase img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.article h3,
+.purchase h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.article p,
+.purchase p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.article a {
+    text-decoration: none;
+    color: #4a90e2;
+    font-weight: 500;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.article a:hover {
+    text-decoration: underline;
+}
+
+/* Pied de page */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2rem;
+}
