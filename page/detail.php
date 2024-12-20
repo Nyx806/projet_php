@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="../style/detail.css">
 </head>
 
-<?php include 'header.php' ?>
+<?php 
+include 'header.php';
+include 'config.php';
+?>
 
 <body>
     <main>
