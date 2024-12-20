@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="../style/vente.css">
 </head>
 
-<?php include 'header.php' ?>
+<?php
+include 'header.php';
+include 'config.php';
+?>
 
 <body>
     <!-- Formulaire de création d'article -->
