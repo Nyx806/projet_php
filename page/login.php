@@ -7,6 +7,31 @@
     <!-- Lien vers le fichier CSS -->
     <link rel="stylesheet" href="../style/login.css">
 </head>
+
+<?php 
+include 'config.php';
+
+$message = '';
+
+if(isset($_POST['username']) && isset($_POST['password'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $sql = "SELECT * FROM user WHERE username = :username";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['username' => $username]);
+    $user = $stmt->fetch();
+
+    if($user && password_verify($password,$user['password'])) {
+        session_start();
+        $_SESSION['user_id'] = $user['user_ID'];
+        header('Location: home.php');
+    } else {
+        $message = 'Mauvais identifiant';
+    }
+}
+
+?> 
+
 <body>
 
     <!-- Bouton Home en haut à gauche -->
@@ -15,7 +40,7 @@
     </div>
 
     <div class="login-container">
-        <form action="#" method="POST" class="login-form">
+        <form action="login.php" method="POST" class="login-form">
             <h2>Connexion</h2>
             <!-- Champ pour le nom d'utilisateur -->
             <div class="input-group">

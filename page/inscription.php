@@ -7,6 +7,30 @@
     <!-- Lien vers le fichier CSS -->
     <link rel="stylesheet" href="../style/inscription.css">
 </head>
+
+<?php 
+include 'config.php';
+
+$message = '';
+
+if(isset($_POST['username']) && isset($_POST['password'])){
+    $username = $_POST['username'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $email = $_POST['email'];
+    
+    $sql = "INSERT INTO user (username,password,email) VALUE (:username, :password, :email)";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute(['username' => $username, 'password' => $password, 'email' => $email]);
+
+    if ($result) {
+        $message = 'Inscription réussie!';
+        header('Location: login.php');
+    } else {
+        $message = 'Erreur lors de l\'inscription.';
+    }
+}
+?>
+
 <body>
     <!-- Bouton Home en haut à gauche -->
     <a href="home.php" class="home-btn">Home</a>
@@ -17,8 +41,8 @@
 
             <!-- Champ pour le nom complet -->
             <div class="input-group">
-                <label for="fullname">Nom complet</label>
-                <input type="text" id="fullname" name="fullname" placeholder="Entrez votre nom complet" required>
+                <label for="username">Nom complet</label>
+                <input type="text" id="username" name="username" placeholder="Entrez votre nom complet" required>
             </div>
 
             <!-- Champ pour l'email -->
@@ -31,12 +55,6 @@
             <div class="input-group">
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" name="password" placeholder="Créez un mot de passe" required>
-            </div>
-
-            <!-- Champ pour confirmer le mot de passe -->
-            <div class="input-group">
-                <label for="confirm-password">Confirmer le mot de passe</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmez votre mot de passe" required>
             </div>
 
             <!-- Bouton d'inscription -->
