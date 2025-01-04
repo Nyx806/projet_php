@@ -24,6 +24,12 @@ if(isset($_POST['username']) && isset($_POST['password'])){
     if($user && password_verify($password,$user['password'])) {
         session_start();
         $_SESSION['user_id'] = $user['user_ID'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['solde'] = $user['solde'];
+        $_SESSION['photoProfil'] = $user['photoProfil'];
+        $_SESSION['role'] = $user['role'];
+        
         header('Location: home.php');
     } else {
         $message = 'Mauvais identifiant';
