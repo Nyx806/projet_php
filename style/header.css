@@ -150,10 +150,16 @@
 }
 
 /* Section utilisateur */
-.user-info {
+.user-info-nav {
     display: flex;
     align-items: center;
     gap: 10px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
 }
 
 /* Photo de profil */
@@ -171,4 +177,17 @@
     color: #333;
     font-weight: bold;
     white-space: nowrap;
+}
+
+/* Supprimer le style par défaut des liens */
+.clickable-div {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Ajouter un effet de survol */
+.clickable-div:hover .user-info {
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }

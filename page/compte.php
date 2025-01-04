@@ -10,7 +10,8 @@
 <?php 
 include 'header.php';
 
-session_start();
+$isLoggedIn = isset($_SESSION['user_id']);
+
 
 ?>
 
@@ -19,8 +20,17 @@ session_start();
         <div class="account-container">
             <!-- Informations personnelles -->
             <section class="user-info">
-                <h2>Informations personnelles</h2>
+                    <h2>information personnelle</h2>
                 <form action="update_compte.php" method="POST">
+
+                
+                    <div class="user-info">
+                        <img src="<?php echo $profilePicture; ?>" alt="Photo de profil" class="profile-pic">                       
+                        <span class="username"><?php echo htmlspecialchars($username); ?></span>
+                        <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                    </div>
+                
+
                     <div class="info-field">
                         <label for="username">Nom d'utilisateur :</label>
                         <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>">

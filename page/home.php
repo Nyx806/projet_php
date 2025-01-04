@@ -31,6 +31,7 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Prix : <strong><?php echo $article['prix'] ?>€</strong></p>
             <p class="date"><?php echo $article['date'] ?></p>
             <button>Acheter</button>
+            <button><a href="detail.php">Détails</a></button>
         </div>
         <?php endforeach ?>
     </main>

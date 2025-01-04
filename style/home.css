@@ -10,29 +10,12 @@
 
 /* Style général du body */
 body {
-    display: flex;
-    flex-direction: column; /* Aligne les éléments (header, main, footer) en colonne */
-    min-height: 100vh; /* Prend au moins toute la hauteur de l'écran */
     background-color: #f9f9f9;
     color: #333;
     line-height: 1.6;
 }
 
-/* En-tête */
-header {
-    background-color: #4a90e2;
-    color: #fff;
-    text-align: center;
-    padding: 1.5rem 1rem;
-}
 
-header h1 {
-    margin-bottom: 0.5rem;
-}
-
-header p {
-    font-size: 1.1rem;
-}
 
 /* Conteneur des articles */
 .articles-container {
@@ -86,6 +69,7 @@ header p {
 
 .article button {
     background-color: #4a90e2;
+    text-decoration: none;
     color: #fff;
     border: none;
     padding: 0.7rem 1.2rem;

@@ -43,7 +43,6 @@ if ($isLoggedIn) {
                 <?php if ($isLoggedIn): ?>
                     <li><a href="vente.php">Vente</a></li>
                     <li><a href="panier.php">Panier</a></li>
-                    <li><a href="confirmation.php">Confirmation</a></li>
                     <li><a href="compte.php">Mon Compte</a></li>
                     <li><a href="logout.php">Déconnexion</a></li>
                 <?php else: ?>
@@ -54,10 +53,12 @@ if ($isLoggedIn) {
 
             <!-- Affichage du nom et de la photo de profil -->
             <?php if ($isLoggedIn): ?>
-                <div class="user-info">
-                    <img src="<?php echo $profilePicture; ?>" alt="Photo de profil" class="profile-pic">
-                    <span class="username"><?php echo htmlspecialchars($username); ?></span>
-                </div>
+                <a href="compte.php" class="clickable-div">
+                    <div class="user-info-nav">
+                        <img src="<?php echo $profilePicture; ?>" alt="Photo de profil" class="profile-pic">
+                        <span class="username"><?php echo htmlspecialchars($username); ?></span>    
+                    </div>
+                </a>
             <?php endif; ?>
         </div>
     </nav>
