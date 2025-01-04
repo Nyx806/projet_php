@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="../style/compte.css">
 </head>
 
-<?php include 'header.php' ?>
+<?php 
+include 'header.php';
+
+session_start();
+
+?>
 
 <body>
     <main>
@@ -18,11 +23,11 @@
                 <form action="mettre_a_jour_compte.php" method="POST">
                     <div class="info-field">
                         <label for="username">Nom d'utilisateur :</label>
-                        <input type="text" id="username" name="username" value="JohnDoe" disabled>
+                        <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>">
                     </div>
                     <div class="info-field">
                         <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" value="johndoe@example.com">
+                        <input type="email" id="email" name="email" value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>">
                     </div>
                     <div class="info-field">
                         <label for="password">Mot de passe :</label>
