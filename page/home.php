@@ -12,48 +12,28 @@
 <?php
 include 'header.php';
 include 'config.php';
+
+// Récupérer les articles
+$sql = "SELECT name , description, prix, date    FROM article ORDER BY date DESC";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <body>
     <!-- Conteneur principal des articles -->
     <main class="articles-container">
-        <!-- Article 1 -->
+        <?php foreach ($articles as $article): ?>
         <div class="article">
             <img src="https://via.placeholder.com/300x200" alt="Article 1">
-            <h2>Nom de l'article 1</h2>
-            <p>Prix : <strong>20€</strong></p>
-            <p class="date">Ajouté le : 15 Juin 2024</p>
+            <h2><?php echo $article['name'] ?></h2>
+            <p>Prix : <strong><?php echo $article['prix'] ?>€</strong></p>
+            <p class="date"><?php echo $article['date'] ?></p>
             <button>Acheter</button>
         </div>
-
-        <!-- Article 2 -->
-        <div class="article">
-            <img src="https://via.placeholder.com/300x200" alt="Article 2">
-            <h2>Nom de l'article 2</h2>
-            <p>Prix : <strong>35€</strong></p>
-            <p class="date">Ajouté le : 14 Juin 2024</p>
-            <button>Acheter</button>
-        </div>
-
-        <!-- Article 3 -->
-        <div class="article">
-            <img src="https://via.placeholder.com/300x200" alt="Article 3">
-            <h2>Nom de l'article 3</h2>
-            <p>Prix : <strong>50€</strong></p>
-            <p class="date">Ajouté le : 12 Juin 2024</p>
-            <button>Acheter</button>
-        </div>
-
-        <!-- Article 4 -->
-        <div class="article">
-            <img src="https://via.placeholder.com/300x200" alt="Article 4">
-            <h2>Nom de l'article 4</h2>
-            <p>Prix : <strong>15€</strong></p>
-            <p class="date">Ajouté le : 10 Juin 2024</p>
-            <button>Acheter</button>
-        </div>
+        <?php endforeach ?>
     </main>
-
 </body>
     <?php include 'footer.php' ?>
 </html>
