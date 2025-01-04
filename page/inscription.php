@@ -17,10 +17,17 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $email = $_POST['email'];
-    
-    $sql = "INSERT INTO user (username,password,email) VALUE (:username, :password, :email)";
+    $profile_picture = null;
+
+    // Vérifie si une photo de profil a été téléchargée
+    if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 0) {
+        // Ouvre le fichier et le lit en tant que données binaires
+        $profile_picture = file_get_contents($_FILES['profile_picture']['tmp_name']);
+    }
+
+    $sql = "INSERT INTO user (username,password,email,photoProfil) VALUE (:username, :password, :email, :profile_picture)";
     $stmt = $pdo->prepare($sql);
-    $result = $stmt->execute(['username' => $username, 'password' => $password, 'email' => $email]);
+    $result = $stmt->execute(['username' => $username, 'password' => $password, 'email' => $email, 'profile_picture' => $profile_picture]);
 
     if ($result) {
         $message = 'Inscription réussie!';
@@ -36,8 +43,14 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email
     <a href="home.php" class="home-btn">Home</a>
 
     <div class="signup-container">
-        <form action="#" method="POST" class="signup-form">
+        <form action="#" method="POST" class="signup-form" enctype="multipart/form-data">
             <h2>Créer un compte</h2>
+
+            <!-- Champ pour la photo de profil -->
+            <div class="input-group">
+                <label for="profile_picture">Photo de profil</label>
+                <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+            </div>
 
             <!-- Champ pour le nom complet -->
             <div class="input-group">
