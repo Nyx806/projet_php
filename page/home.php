@@ -46,7 +46,7 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Stock : <strong><?php echo htmlspecialchars($stock['nb_Stock'] ?? 0); ?></strong></p>
             <p class="date"><?php echo htmlspecialchars($article['date']); ?></p>
             <button>Acheter</button>
-            <button><a href="detail.php">Détails</a></button>
+            <button><a href="detail.php?id=<?php echo $article['article_id']; ?>">Détails</a></button>
         </div>
     <?php endforeach; ?>
     </main>
