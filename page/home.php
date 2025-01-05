@@ -14,27 +14,45 @@ include 'header.php';
 include 'config.php';
 
 // Récupérer les articles
-$sql = "SELECT name , description, prix, date, lienImg    FROM article ORDER BY date DESC";
+$sql = "SELECT article_id, name , description, prix, date, lienImg    FROM article ORDER BY date DESC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 
 <body>
     <!-- Conteneur principal des articles -->
     <main class="articles-container">
-        <?php foreach ($articles as $article): ?>
+    <?php foreach ($articles as $article): ?>
         <div class="article">
-            <img src="<?php echo $article['lienImg'] ?>" alt="Article 1">
-            <h2><?php echo $article['name'] ?></h2>
-            <p>Prix : <strong><?php echo $article['prix'] ?>€</strong></p>
-            <p class="date"><?php echo $article['date'] ?></p>
+            <?php
+            // Vérifier si l'article a une image
+            $articlePicture = !empty($article['lienImg']) 
+                ? 'data:image/jpeg;base64,' . base64_encode($article['lienImg']) // Convertit le BLOB en base64
+                : 'default-avatar.png'; // Image par défaut si pas d'image
+
+            // Récupérer le stock de cet article spécifique
+            $stock_sql = "SELECT nb_Stock FROM stock WHERE article_ID = :article_ID";
+            $stock_stmt = $pdo->prepare($stock_sql);
+            $stock_stmt->execute(['article_ID' => $article['article_id']]);
+            $stock = $stock_stmt->fetch(PDO::FETCH_ASSOC);
+            ?>
+            <!-- Afficher l'image -->
+            <img src="<?php echo $articlePicture; ?>" alt="<?php echo htmlspecialchars($article['name']); ?>">
+            <h2><?php echo htmlspecialchars($article['name']); ?></h2>
+            <p>Prix : <strong><?php echo htmlspecialchars($article['prix']); ?>€</strong></p>
+            <p>Stock : <strong><?php echo htmlspecialchars($stock['nb_Stock'] ?? 0); ?></strong></p>
+            <p class="date"><?php echo htmlspecialchars($article['date']); ?></p>
             <button>Acheter</button>
             <button><a href="detail.php">Détails</a></button>
         </div>
-        <?php endforeach ?>
+    <?php endforeach; ?>
     </main>
 </body>
     <?php include 'footer.php' ?>
 </html>
+
+
+Warning: Undefined array key "article_id" in C:\xampp\htdocs\projet\projet_php\page\home.php on line 39

@@ -32,7 +32,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     width: 300px; /* Largeur fixe des articles */
-    height: 400px; /* Hauteur fixe pour éviter l'étirement */
+    height: 450px; /* Hauteur fixe pour éviter l'étirement */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
     overflow: hidden;
