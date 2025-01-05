@@ -54,5 +54,3 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php include 'footer.php' ?>
 </html>
 
-
-Warning: Undefined array key "article_id" in C:\xampp\htdocs\projet\projet_php\page\home.php on line 39
