@@ -14,7 +14,7 @@ include 'header.php';
 include 'config.php';
 
 // Récupérer les articles
-$sql = "SELECT name , description, prix, date    FROM article ORDER BY date DESC";
+$sql = "SELECT name , description, prix, date, lienImg    FROM article ORDER BY date DESC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -26,7 +26,7 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <main class="articles-container">
         <?php foreach ($articles as $article): ?>
         <div class="article">
-            <img src="https://via.placeholder.com/300x200" alt="Article 1">
+            <img src="<?php echo $article['lienImg'] ?>" alt="Article 1">
             <h2><?php echo $article['name'] ?></h2>
             <p>Prix : <strong><?php echo $article['prix'] ?>€</strong></p>
             <p class="date"><?php echo $article['date'] ?></p>
