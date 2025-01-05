@@ -122,3 +122,72 @@
         transform: rotate(90deg);
     }
 }
+
+/* Container de la navbar */
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Liens de navigation */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #007bff;
+}
+
+/* Section utilisateur */
+.user-info-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Photo de profil */
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+}
+
+/* Nom d'utilisateur */
+.username {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* Supprimer le style par défaut des liens */
+.clickable-div {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Ajouter un effet de survol */
+.clickable-div:hover .user-info {
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

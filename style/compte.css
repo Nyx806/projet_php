@@ -15,21 +15,7 @@ body {
     line-height: 1.6;
 }
 
-/* En-tête */
-header {
-    background-color: #4a90e2;
-    color: #fff;
-    text-align: center;
-    padding: 1.5rem 1rem;
-}
 
-header h1 {
-    margin-bottom: 0.5rem;
-}
-
-header p {
-    font-size: 1.1rem;
-}
 
 /* Conteneur principal du compte */
 .account-container {
@@ -40,6 +26,8 @@ header p {
 
 /* Section des informations personnelles */
 .user-info {
+    align-items: center;
+    gap: 10px;
     background-color: #fff;
     padding: 2rem;
     border-radius: 8px;
@@ -154,11 +142,3 @@ header p {
     text-decoration: underline;
 }
 
-/* Pied de page */
-footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
-    margin-top: 2rem;
-}
