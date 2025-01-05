@@ -4,6 +4,7 @@ session_start();
 
 $message = '';
 
+
 // Vérification des champs de formulaire et de l'utilisateur connecté
 try {
     if (isset($_POST['username']) && isset($_POST['email']) && ($_POST['username'] != $_SESSION['username'] || $_POST['email'] != $_SESSION['email'])) {
@@ -55,7 +56,7 @@ try {
             if ($result) {
                 $_SESSION['message'] = 'Mot de passe modifié avec succès';
                 header('Location: compte.php');
-                exit;
+                
             } else {
                 $message = 'Erreur lors du changement du mot de passe';
             }
@@ -63,6 +64,23 @@ try {
             $message = 'Mot de passe actuel incorrect';
         }
     }
+
+    if(isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 0){
+        $profile_picture = file_get_contents($_FILES['profile_picture']['tmp_name']);
+
+        $sql = "UPDATE user SET photoProfil = :profile_picture WHERE user_id = :id";
+        $stmt = $pdo->prepare($sql);
+        $result = $stmt->execute(['profile_picture' => $profile_picture, 'id' =>$_SESSION['user_id']]);
+        
+        if ($result) {
+            $_SESSION['message'] = 'photo modifier avec succès';
+            header('Location: compte.php');
+            exit;
+        } else {
+            $message = 'Erreur lors de l\'upload de la photo';
+        }
+    }
+
 
 } catch (PDOException $e) {
     // Capture l'exception PDO et affiche le message d'erreur

@@ -21,7 +21,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <!-- Informations personnelles -->
             <section class="user-info">
                     <h2>information personnelle</h2>
-                <form action="update_compte.php" method="POST">
+                <form action="update_compte.php" method="POST" enctype="multipart/form-data">
 
                 
                     <div class="user-info">
