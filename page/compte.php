@@ -27,6 +27,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                     <div class="user-info">
                         <img src="<?php echo $profilePicture; ?>" alt="Photo de profil" class="profile-pic">                       
                         <span class="username"><?php echo htmlspecialchars($username); ?></span>
+                        <input type="text" name="solde" id="solde">
                         <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
                     </div>
                 
