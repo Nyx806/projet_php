@@ -142,3 +142,63 @@ body {
     text-decoration: underline;
 }
 
+.account-balance {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-balance h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.current-balance p {
+    font-size: 1.2rem;
+    color: #4a90e2;
+    margin-bottom: 1rem;
+}
+
+.add-balance {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.add-balance label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.input-group input[type="number"] {
+    width: 100px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.input-group button {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.input-group button:hover {
+    background-color: #357ab8;
+}
