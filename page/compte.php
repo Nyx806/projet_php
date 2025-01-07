@@ -12,26 +12,26 @@ include 'header.php';
 
 $isLoggedIn = isset($_SESSION['user_id']);
 
-
+// Exemple : récupération du solde depuis la session ou la base de données
+$soldeActuel = isset($_SESSION['solde']) ? $_SESSION['solde'] : 0.00; // Valeur par défaut
 ?>
 
 <body>
     <main>
         <div class="account-container">
+
             <!-- Informations personnelles -->
             <section class="user-info">
-                    <h2>information personnelle</h2>
+                <h2>Informations personnelles</h2>
                 <form action="update_compte.php" method="POST" enctype="multipart/form-data">
-
-                
                     <div class="user-info">
                         <img src="<?php echo $profilePicture; ?>" alt="Photo de profil" class="profile-pic">                       
-                        <span class="username"><?php echo htmlspecialchars($username); ?></span>
-                        <input type="text" name="solde" id="solde">
                         <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                        
+                        <div class="user-details">
+                            <span class="username"><?php echo htmlspecialchars($username); ?></span>
+                        </div>
                     </div>
-                
-
                     <div class="info-field">
                         <label for="username">Nom d'utilisateur :</label>
                         <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>">
@@ -42,13 +42,34 @@ $isLoggedIn = isset($_SESSION['user_id']);
                     </div>
                     <div class="info-field">
                         <label for="password">Mot de passe :</label>
-                        <input type="password" id="oldPassword" name="oldPassword" placeholder="mot de passe actuel">
+                        <input type="password" id="oldPassword" name="oldPassword" placeholder="Mot de passe actuel">
                     </div>
                     <div class="info-field">
                         <label for="password">Nouveau mot de passe :</label>
                         <input type="password" id="password" name="password" placeholder="Nouveau mot de passe">
                     </div>
                     <button type="submit">Mettre à jour mes informations</button>
+                </form>
+            </section>
+
+            <!-- Solde du compte -->
+            <section class="account-balance">
+                <h2>Solde de votre compte</h2>
+
+                <!-- Affichage du solde actuel -->
+                <div class="current-balance">
+                    <p>Votre solde actuel : <strong><?php echo number_format($soldeActuel, 2, ',', ' '); ?> €</strong></p>
+                </div>
+
+                <!-- Formulaire pour ajouter de l'argent -->
+                <form action="update_solde.php" method="POST">
+                    <div class="add-balance">
+                        <label for="add_amount">Ajouter un montant :</label>
+                        <div class="input-group">
+                            <input type="number" id="add_amount" name="add_amount" step="0.01" min="0" placeholder="0.00" required>
+                            <button type="submit">Ajouter</button>
+                        </div>
+                    </div>
                 </form>
             </section>
 
