@@ -10,6 +10,9 @@
 <?php
 include 'header.php';
 include 'config.php';
+
+// $sql = "SELECT article_id, name , prix FROM article INNER JOIN cart ON article_id = article_ID INNER JOIN user ON user_ID = user_id  ";
+
 ?>
 
 <body>
