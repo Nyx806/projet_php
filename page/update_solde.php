@@ -37,7 +37,7 @@ if (isset($_POST['add_amount'])) {
                 }
             
         } catch (Exception $e) {
-            error_log("Erreur lors de la mise à jour du solde : " . $e->getMessage());
+            error_log(message: "Erreur lors de la mise à jour du solde : " . $e->getMessage());
            
         }
     }

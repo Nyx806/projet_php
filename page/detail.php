@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
                 <form action="ajouter_au_panier.php" method="POST">
                     <label for="quantity">Quantité :</label>
                     <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
-                    <button type="submit">Ajouter au panier</button>
+                    <button><a href="update_panier.php?id=<?php echo $article['article_id']; ?>">Ajouter au panier</a></button>
                 </form>
             </div>
         </div>
