@@ -15,7 +15,7 @@ include 'config.php';
 $user_id = $_SESSION['user_id'];
 
 // Requête SQL pour récupérer les articles du panier de l'utilisateur
-$sql = "SELECT article.article_id, article.name, article.prix 
+$sql = "SELECT DISTINCT article.article_id, article.name, article.prix 
         FROM article 
         INNER JOIN cart ON article.article_id = cart.article_ID 
         WHERE cart.user_id = :user_id";
@@ -23,6 +23,12 @@ $sql = "SELECT article.article_id, article.name, article.prix
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['user_id' => $user_id]);
 $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes sous forme de tableau associatif
+
+$quantity_sql = "SELECT SUM(cart.article_ID) FROM cart WHERE cart.user_id = :user_id";
+$stmt = $pdo->prepare($quantity_sql);
+$stmt->execute(['user_id' => $user_id]);
+$quantity =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -43,10 +49,26 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes s
                 <?php if (!empty($articles)): ?>
                     <?php foreach ($articles as $article): ?>
                         <tr>
+
+                        <?php 
+                            // Récupérer l'ID utilisateur
+                            $user_id = $_SESSION['user_id'];
+                            $article_id = $article['article_id'] ; // ID de l'article que tu veux compter
+                            $quantity_sql = "SELECT COUNT(*) AS article_count 
+                                             FROM cart 
+                                             WHERE cart.user_id = :user_id AND cart.article_ID = :article_id";
+                            
+                            $stmt = $pdo->prepare($quantity_sql);
+                            $stmt->execute(['user_id' => $user_id, 'article_id' => $article_id]);
+                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                            $article_count = $result['article_count'] ?? 0; // Si aucun article trouvé, retourne 0
+
+                        ?>
+
                             <td><?php echo htmlspecialchars($article['name']); ?></td>
                             <td><?php echo htmlspecialchars($article['prix']); ?>€</td>
                             <td>
-                                <input type="number" value="1" min="1" class="qty-input" data-price="<?php echo $article['prix']; ?>">
+                                 <span id="article-count"><?= $article_count ?></span>
                             </td>
                             <td class="total"><?php echo htmlspecialchars($article['prix']); ?>€</td>
                             <td>
