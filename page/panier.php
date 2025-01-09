@@ -27,10 +27,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['user_id' => $user_id]);
 $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes sous forme de tableau associatif
 
-$quantity_sql = "SELECT SUM(cart.article_ID) FROM cart WHERE cart.user_id = :user_id";
-$stmt = $pdo->prepare($quantity_sql);
-$stmt->execute(['user_id' => $user_id]);
-$quantity =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>

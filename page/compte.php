@@ -14,6 +14,18 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
 // Exemple : récupération du solde depuis la session ou la base de données
 $soldeActuel = isset($_SESSION['solde']) ? $_SESSION['solde'] : 0.00; // Valeur par défaut
+
+// Requête SQL pour récupérer les articles du panier de l'utilisateur
+$sql = "SELECT DISTINCT article.article_id, article.name, article.prix 
+        FROM article 
+        INNER JOIN cart ON article.article_id = cart.article_ID 
+        WHERE cart.user_id = :user_id";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['user_id' => $user_id]);
+$articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes sous forme de tableau associatif
+
+
 ?>
 
 <body>
@@ -97,15 +109,26 @@ $soldeActuel = isset($_SESSION['solde']) ? $_SESSION['solde'] : 0.00; // Valeur 
             <section class="my-purchases">
                 <h2>Mes Achats</h2>
                 <div class="purchases-list">
-                    <!-- Exemple d'achat -->
+                    <?php foreach($articles as $article): ?>
+                    <?php
+                    $user_id = $_SESSION['user_id'];
+                    $article_id = $article['article_id']; // ID de l'article
+                    $quantity_sql = "SELECT COUNT(*) AS article_count FROM cart WHERE cart.user_id = :user_id AND cart.article_ID = :article_id";
+                    $stmt = $pdo->prepare($quantity_sql);
+                    $stmt->execute(['user_id' => $user_id, 'article_id' => $article_id]);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    // Si aucun article trouvé, retourne 0
+                    $article_count = $result['article_count'] ?? 0; 
+
+
+                    ?>
                     <div class="purchase">
-                        <h3>Nom de l'Article Acheté</h3>
-                        <p>Prix: 29,99€</p>
+                        <h3><?php echo htmlspecialchars($article['name']); ?></h3>
+                        <p>Prix: <?php echo htmlspecialchars($article['prix']); ?>€</p>
+                        <p>Quantité : <?= $article_count ?></p>
                     </div>
-                    <div class="purchase">
-                        <h3>Nom de l'Article Acheté</h3>
-                        <p>Prix: 19,99€</p>
-                    </div>
+                    <?php endforeach ?>
                 </div>
             </section>
         </div>
