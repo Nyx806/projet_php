@@ -14,6 +14,9 @@ include 'config.php';
 // Récupérer l'ID utilisateur
 $user_id = $_SESSION['user_id'];
 
+// initialiser le total du panier
+$total_cart = 0;
+
 // Requête SQL pour récupérer les articles du panier de l'utilisateur
 $sql = "SELECT DISTINCT article.article_id, article.name, article.prix 
         FROM article 
@@ -51,20 +54,21 @@ $quantity =  $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
 
                         <?php 
-                                        // Récupérer la quantité spécifique pour cet article
-                        $article_id = $article['article_id']; // ID de l'article
-                        $quantity_sql = "SELECT COUNT(*) AS article_count 
-                                        FROM cart 
-                                        WHERE cart.user_id = :user_id AND cart.article_ID = :article_id";
+                        // Récupérer la quantité spécifique pour cet article
+
                         
+                        $article_id = $article['article_id']; // ID de l'article
+                        $quantity_sql = "SELECT COUNT(*) AS article_count FROM cart WHERE cart.user_id = :user_id AND cart.article_ID = :article_id";
                         $stmt = $pdo->prepare($quantity_sql);
                         $stmt->execute(['user_id' => $user_id, 'article_id' => $article_id]);
                         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                        $article_count = $result['article_count'] ?? 0; // Si aucun article trouvé, retourne 0
+
+                        // Si aucun article trouvé, retourne 0
+                        $article_count = $result['article_count'] ?? 0; 
 
                         // Calculer le total pour cet article
                         $total_price = $article_count * $article['prix'];
-
+                        $total_cart = $total_cart + $total_price;
                         ?>
 
                             <td><?php echo htmlspecialchars($article['name']); ?></td>
@@ -91,8 +95,8 @@ $quantity =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <!-- Total du panier -->
         <div class="total-panier">
-            <p>Total : <span id="total">0.00€</span></p>
-            <p>Solde disponible : <span id="solde">100.00€</span></p>
+            <p>Total : <span id="total"><?= $total_cart?>€</span></p>
+            <p>Solde disponible : <span id="solde"><?php echo $_SESSION['solde'] ?>€</span></p>
 
             <!-- Bouton de passage de commande -->
             <button id="passer-commande" class="btn">Passer la Commande</button>
@@ -102,28 +106,5 @@ $quantity =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <?php include 'footer.php'; ?>
 
-<!-- Script pour calculer dynamiquement le total -->
-<script>
-    const qtyInputs = document.querySelectorAll('.qty-input');
-    const totalElement = document.getElementById('total');
-
-    function updateTotal() {
-        let total = 0;
-        qtyInputs.forEach(input => {
-            const price = parseFloat(input.getAttribute('data-price'));
-            const quantity = parseInt(input.value);
-            total += price * quantity;
-        });
-        totalElement.textContent = total.toFixed(2) + '€';
-    }
-
-    // Met à jour le total lorsqu'une quantité change
-    qtyInputs.forEach(input => {
-        input.addEventListener('input', updateTotal);
-    });
-
-    // Calcul initial du total
-    updateTotal();
-</script>
 
 </html>
