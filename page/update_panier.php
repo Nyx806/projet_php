@@ -3,7 +3,7 @@ include 'config.php';
 session_start();
 // Vérifier si l'ID est passé dans l'URL
 if( isset($_GET['id'])){
-    $decrement = 1;
+    $increment = 1;
     $article_id = $_GET['id'];
     $user_id = $_SESSION['user_id'];
 
@@ -13,9 +13,9 @@ if( isset($_GET['id'])){
         $result = $stmt->execute(['user_id' => $user_id,'article_id'=> $article_id]);
         if($result){
 
-            $stock_sql = "UPDATE stock SET nb_Stock = nb_Stock - :decrement WHERE article_ID = :article_id";
+            $stock_sql = "UPDATE stock SET nb_Stock = nb_Stock - :increment WHERE article_ID = :article_id";
             $stmt = $pdo->prepare($stock_sql);
-            $result = $stmt->execute(['decrement' => $decrement,'article_id'=> $article_id]);
+            $result = $stmt->execute(['increment' => $increment,'article_id'=> $article_id]);
             $previousPage = $_SERVER['HTTP_REFERER'] ?? 'home.php';
 
             header("Location: $previousPage");
