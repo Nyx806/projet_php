@@ -51,17 +51,19 @@ $quantity =  $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
 
                         <?php 
-                            // Récupérer l'ID utilisateur
-                            $user_id = $_SESSION['user_id'];
-                            $article_id = $article['article_id'] ; // ID de l'article que tu veux compter
-                            $quantity_sql = "SELECT COUNT(*) AS article_count 
-                                             FROM cart 
-                                             WHERE cart.user_id = :user_id AND cart.article_ID = :article_id";
-                            
-                            $stmt = $pdo->prepare($quantity_sql);
-                            $stmt->execute(['user_id' => $user_id, 'article_id' => $article_id]);
-                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                            $article_count = $result['article_count'] ?? 0; // Si aucun article trouvé, retourne 0
+                                        // Récupérer la quantité spécifique pour cet article
+                        $article_id = $article['article_id']; // ID de l'article
+                        $quantity_sql = "SELECT COUNT(*) AS article_count 
+                                        FROM cart 
+                                        WHERE cart.user_id = :user_id AND cart.article_ID = :article_id";
+                        
+                        $stmt = $pdo->prepare($quantity_sql);
+                        $stmt->execute(['user_id' => $user_id, 'article_id' => $article_id]);
+                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $article_count = $result['article_count'] ?? 0; // Si aucun article trouvé, retourne 0
+
+                        // Calculer le total pour cet article
+                        $total_price = $article_count * $article['prix'];
 
                         ?>
 
@@ -70,7 +72,7 @@ $quantity =  $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td>
                                  <span id="article-count"><?= $article_count ?></span>
                             </td>
-                            <td class="total"><?php echo htmlspecialchars($article['prix']); ?>€</td>
+                            <td class="total"><?= $total_price?>€</td>
                             <td>
                                 <form action="remove_article.php" method="POST">
                                     <input type="hidden" name="article_id" value="<?php echo $article['article_id']; ?>">
