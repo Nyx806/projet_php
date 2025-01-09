@@ -78,7 +78,7 @@ $quantity =  $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </td>
                             <td class="total"><?= $total_price?>€</td>
                             <td>
-                                <form action="remove_article.php" method="POST">
+                                <form action="delete_article.php" method="POST">
                                     <input type="hidden" name="article_id" value="<?php echo $article['article_id']; ?>">
                                     <button type="submit" class="remove-btn">Supprimer</button>
                                 </form>
