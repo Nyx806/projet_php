@@ -106,7 +106,7 @@ $creations = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes 
                         <img src="<?php echo $articlePicture; ?>" alt="Article 1">
                         <h3><?php echo htmlspecialchars($creation['name']); ?></h3>
                         <p>Prix: <?php echo htmlspecialchars($creation['prix']); ?>€</p>
-                        <a href="modifier_article.php?id=1">Modifier</a>
+                        <a href="modifArticle.php?id=<?= htmlspecialchars($creation['article_id']) ?>">Modifier</a>
                     </div>
                     <?php endforeach ?>
                 </div>
