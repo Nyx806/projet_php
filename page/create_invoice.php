@@ -51,6 +51,19 @@ if (isset($_GET['total'])) {
                 $stmt->execute(['user_id' => $_SESSION['user_id']]);
                 $invoices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+                // Mettre à jour le solde dans la base de données
+                $solde_sql = "UPDATE user SET solde = solde - :panier WHERE user_ID = :userId";
+                $stmt = $pdo->prepare($solde_sql);
+                $result = $stmt->execute(['panier'=> $montant, 'userId'=> $_SESSION['user_id']]);
+                if ($result) {
+                    // Récupérer le nouveau solde depuis la base de données
+                    $stmt = $pdo->prepare("SELECT solde FROM user WHERE user_ID = :userId");
+                    $stmt->execute(['userId' => $_SESSION['user_id']]);
+                    $newSolde = $stmt->fetchColumn();
+
+                    // Mettre à jour la session avec le nouveau solde
+                    $_SESSION['solde'] = $newSolde;
+                }
             
 
             
