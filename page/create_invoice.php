@@ -88,7 +88,7 @@ if (isset($_GET['total'])) {
                     // Détails de la facture
                     $pdf->SetFont('Arial', '', 12);
                     $pdf->Cell(40, 10, 'ID utilisateur : ' . $user['username'], 0, 1);
-                    $pdf->Cell(40, 10, 'Montant : ' . number_format($montant, 2) . ' €', 0, 1);
+                    $pdf->Cell(40, 10, 'Montant : ' . number_format($montant, 2) . ' ' . chr(128), 0, 1);
                     $pdf->Cell(40, 10, 'Adresse de facturation : ' . $adresseFacture, 0, 1);
                     $pdf->Cell(40, 10, 'Ville : ' . $villeFacture, 0, 1);
                     $pdf->Cell(40, 10, 'Code Postal : ' . $codePostal, 0, 1);
@@ -101,7 +101,6 @@ if (isset($_GET['total'])) {
                     header('Content-Type: application/pdf');
                     header('Content-Disposition: attachment; filename="facture_' . $user['username'] . '.pdf"');
                     header('Cache-Control: private, max-age=0, must-revalidate');
-
                     // Générer le PDF et l'envoyer au navigateur
                     $pdf->Output('D', 'facture_' . $user['username'] . '.pdf');
 
