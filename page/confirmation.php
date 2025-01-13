@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="../style/confirmation.css">
 </head>
 
-<?php include 'header.php' ?>
+<?php 
+include 'header.php'; 
+$montant = $_GET['total'];
+?>
 
 <body>
     <main class="form-container">
-        <form action="create_invoice.php" method="POST" class="invoice-form">
+        <form action="create_invoice.php?total=<?=$montant ?>" method="POST" class="invoice-form">
 
             <!-- Date de Transaction -->
             <div class="input-group">
@@ -22,7 +25,7 @@
             <!-- Montant -->
             <div class="input-group">
                 <label for="montant">Montant (€)</label>
-                <input type="number" id="montant" name="montant" placeholder="Ex : 150.75" step="0.01" min="0" required>
+                <input type="number" id="montant" name="montant" value="<?=$montant ?>" step="0.01" min="0" readonly>
             </div>
 
             <!-- Adresse de Facturation -->
@@ -44,7 +47,7 @@
             </div>
 
             <!-- Bouton de soumission -->
-            <button type="submit" class="btn">Créer la Facture</button>
+            <button type="submit" class="btn">Acheter</button>
         </form>
     </main>
 </body>

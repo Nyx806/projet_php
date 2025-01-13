@@ -44,7 +44,6 @@ try {
             $stock_result = $stock_stmt->execute(['article_id' => $article_id,'stock' => $stock]);
 
             if ($stock_result) {
-                echo 'Article et stock ajoutés avec succès !';
                 header('Location: home.php'); // Décommentez après test
                 exit;
             } else {

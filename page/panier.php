@@ -95,7 +95,7 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes s
             <p>Solde disponible : <span id="solde"><?php echo $_SESSION['solde'] ?>€</span></p>
 
             <!-- Bouton de passage de commande -->
-            <button id="passer-commande" class="btn">Passer la Commande</button>
+            <button id="passer-commande" class="btn"><a href="confirmation.php?total=<?=$total_cart ?>">Passer la Commande</a></button>
         </div>
     </main>
 </body>
