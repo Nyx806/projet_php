@@ -10,31 +10,46 @@
 
 <?php 
 include 'config.php';
-
+session_start();
 $message = '';
 
 if(isset($_POST['username'],$_POST['password'],$_POST['email'])){
+
     $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $email = $_POST['email'];
-    $profile_picture = null;
 
-    // Vérifie si une photo de profil a été téléchargée
-    if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 0) {
-        // Ouvre le fichier et le lit en tant que données binaires
-        $profile_picture = file_get_contents($_FILES['profile_picture']['tmp_name']);
-    }
+    // Vérifier si le nom d'utilisateur existe déjà dans la base de données
+    $verify_sql = "SELECT COUNT(*) FROM user WHERE username = :username";
+    $stmt = $pdo->prepare($verify_sql);
+    $stmt->execute(['username' => $username]);
+    $count = $stmt->fetchColumn();
 
-    $sql = "INSERT INTO user (username,password,email,photoProfil) VALUE (:username, :password, :email, :profile_picture)";
-    $stmt = $pdo->prepare($sql);
-    $result = $stmt->execute(['username' => $username, 'password' => $password, 'email' => $email, 'profile_picture' => $profile_picture]);
+    // Si le nom d'utilisateur existe déjà, afficher un message d'erreur
+    if ($count > 0) {
+        $_SESSION['error_message'] = "ce nom d'utilisateur existe déjà.";
 
-    if ($result) {
-        $message = 'Inscription réussie!';
-        header('Location: login.php');
     } else {
-        $message = 'Erreur lors de l\'inscription.';
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $email = $_POST['email'];
+        $profile_picture = null;
+    
+        // Vérifie si une photo de profil a été téléchargée
+        if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 0) {
+            // Ouvre le fichier et le lit en tant que données binaires
+            $profile_picture = file_get_contents($_FILES['profile_picture']['tmp_name']);
+        }
+    
+        $sql = "INSERT INTO user (username,password,email,photoProfil) VALUE (:username, :password, :email, :profile_picture)";
+        $stmt = $pdo->prepare($sql);
+        $result = $stmt->execute(['username' => $username, 'password' => $password, 'email' => $email, 'profile_picture' => $profile_picture]);
+    
+        if ($result) {
+            $message = 'Inscription réussie!';
+            header('Location: login.php');
+        } else {
+            $message = 'Erreur lors de l\'inscription.';
+        }
     }
+
 }
 ?>
 
@@ -49,13 +64,22 @@ if(isset($_POST['username'],$_POST['password'],$_POST['email'])){
             <!-- Champ pour la photo de profil -->
             <div class="input-group">
                 <label for="profile_picture">Photo de profil</label>
-                <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                <input type="file" id="profile_picture" name="profile_picture" accept="image/*" required>
             </div>
 
             <!-- Champ pour le nom complet -->
             <div class="input-group">
                 <label for="username">Nom complet</label>
                 <input type="text" id="username" name="username" placeholder="Entrez votre nom complet" required>
+                <?php
+                if (isset($_SESSION['error_message'])) {
+                    // Afficher le message d'erreur
+                    echo '<div style="color: red; font-weight: bold;">' . htmlspecialchars($_SESSION['error_message']) . '</div>';
+                
+                    // Supprimer le message après l'affichage
+                    unset($_SESSION['error_message']);
+                }
+                ?>
             </div>
 
             <!-- Champ pour l'email -->
