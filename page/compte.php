@@ -26,7 +26,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['user_id' => $user_id]);
 $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes sous forme de tableau associatif
 
-$article_sql =  "SELECT DISTINCT article.article_id, article.name, article.prix 
+$article_sql =  "SELECT DISTINCT article.article_id, article.name, article.prix,article.lienImg
                 FROM article 
                 WHERE article.auteur_ID = :user_id";
 $stmt = $pdo->prepare($article_sql);
@@ -97,8 +97,13 @@ $creations = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes 
                 <h2>Mes Articles</h2>
                 <div class="articles-list">
                     <?php foreach($creations as $creation): ?>
+                        <?php 
+                         $articlePicture = !empty($creation['lienImg']) 
+                         ? 'data:image/jpeg;base64,' . base64_encode($creation['lienImg']) // Convertit le BLOB en base64
+                         : 'default-avatar.png'; // Image par défaut si pas d'image
+                        ?>
                     <div class="article">
-                        <img src="article.jpg" alt="Article 1">
+                        <img src="<?php echo $articlePicture; ?>" alt="Article 1">
                         <h3><?php echo htmlspecialchars($creation['name']); ?></h3>
                         <p>Prix: <?php echo htmlspecialchars($creation['prix']); ?>€</p>
                         <a href="modifier_article.php?id=1">Modifier</a>
