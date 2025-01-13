@@ -11,6 +11,14 @@
 include 'header.php';
 include 'config.php';
 
+if (isset($_SESSION['error_message'])) {
+    // Afficher le message d'erreur
+    echo '<div style="color: red; font-weight: bold;">' . htmlspecialchars($_SESSION['error_message']) . '</div>';
+
+    // Supprimer le message après l'affichage
+    unset($_SESSION['error_message']);
+}
+
 // Récupérer l'ID utilisateur
 $user_id = $_SESSION['user_id'];
 
