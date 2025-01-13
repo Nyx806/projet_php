@@ -11,6 +11,14 @@
 include 'header.php';
 include 'config.php';
 
+if (isset($_SESSION['error_message'])) {
+    // Afficher le message d'erreur
+    echo '<div style="color: red; font-weight: bold;">' . htmlspecialchars($_SESSION['error_message']) . '</div>';
+
+    // Supprimer le message après l'affichage
+    unset($_SESSION['error_message']);
+}
+
 // Récupérer l'ID utilisateur
 $user_id = $_SESSION['user_id'];
 
@@ -95,7 +103,7 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes s
             <p>Solde disponible : <span id="solde"><?php echo $_SESSION['solde'] ?>€</span></p>
 
             <!-- Bouton de passage de commande -->
-            <button id="passer-commande" class="btn">Passer la Commande</button>
+            <button id="passer-commande" class="btn"><a href="confirmation.php?total=<?=$total_cart ?>">Passer la Commande</a></button>
         </div>
     </main>
 </body>
