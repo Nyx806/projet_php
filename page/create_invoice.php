@@ -46,11 +46,17 @@ if (isset($_GET['total'])) {
             $stmt->execute(['user_id' => $_SESSION['user_id']]);
             $invoices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            $user_sql = "SELECT username FROM user WHERE user_ID = :user_id";
+            $stmt = $pdo->prepare($user_sql);
+            $stmt->execute(['user_id' => $_SESSION['user_id']]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+           
             // Vérifier si une facture a été trouvée
             if (!empty($invoices)) {
                 $invoice = $invoices[0]; // Récupérer la première facture
 
-                $user_id = $invoice['user_ID'];  
+                
                 $montant = $invoice['montant'];  
                 $adresseFacture = $invoice['adresse_facture'];  
                 $villeFacture = $invoice['ville_facturation']; 
@@ -66,7 +72,7 @@ if (isset($_GET['total'])) {
 
                 // Détails de la facture
                 $pdf->SetFont('Arial', '', 12);
-                $pdf->Cell(40, 10, 'ID utilisateur : ' . $user_id, 0, 1);
+                $pdf->Cell(40, 10, 'ID utilisateur : ' . $user['username'], 0, 1);
                 $pdf->Cell(40, 10, 'Montant : ' . number_format($montant, 2) . ' €', 0, 1);
                 $pdf->Cell(40, 10, 'Adresse de facturation : ' . $adresseFacture, 0, 1);
                 $pdf->Cell(40, 10, 'Ville : ' . $villeFacture, 0, 1);
@@ -76,13 +82,21 @@ if (isset($_GET['total'])) {
                 $pdf->Cell(40, 10, 'Date : ' . date('Y-m-d H:i:s'), 0, 1);
 
                 // Ajouter les en-têtes pour forcer le téléchargement
+                // Cela doit être envoyé avant tout contenu HTML ou autre code PHP
                 header('Content-Type: application/pdf');
-                header('Content-Disposition: attachment; filename="facture_' . $user_id . '.pdf"');
+                header('Content-Disposition: attachment; filename="facture_' . $user['username'] . '.pdf"');
                 header('Cache-Control: private, max-age=0, must-revalidate');
 
                 // Générer le PDF et l'envoyer au navigateur
-                $pdf->Output('D', 'facture_' . $user_id . '.pdf');
-                exit;
+                $pdf->Output('D', 'facture_' . $user['username'] . '.pdf');
+
+                // Supprimer les articles du panier après génération du PDF
+                $delete_sql = "DELETE FROM cart WHERE user_id = :user_id";
+                $stmt = $pdo->prepare($delete_sql);
+                $stmt->execute([
+                    'user_id' => $user_id,
+                ]);
+
             } else {
                 echo "Aucune facture trouvée pour cet utilisateur.";
             }
