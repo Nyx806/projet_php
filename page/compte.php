@@ -11,6 +11,7 @@
 include 'header.php';
 
 $isLoggedIn = isset($_SESSION['user_id']);
+$user_id = $_SESSION['user_id'];
 
 // Exemple : récupération du solde depuis la session ou la base de données
 $soldeActuel = isset($_SESSION['solde']) ? $_SESSION['solde'] : 0.00; // Valeur par défaut
@@ -25,6 +26,12 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['user_id' => $user_id]);
 $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes sous forme de tableau associatif
 
+$article_sql =  "SELECT DISTINCT article.article_id, article.name, article.prix,article.lienImg
+                FROM article 
+                WHERE article.auteur_ID = :user_id";
+$stmt = $pdo->prepare($article_sql);
+$stmt->execute(['user_id' => $_SESSION['user_id']]);
+$creations = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes sous forme de tableau associatif
 
 ?>
 
@@ -89,23 +96,23 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes s
             <section class="my-articles">
                 <h2>Mes Articles</h2>
                 <div class="articles-list">
-                    <!-- Exemple d'article -->
+                    <?php foreach($creations as $creation): ?>
+                        <?php 
+                         $articlePicture = !empty($creation['lienImg']) 
+                         ? 'data:image/jpeg;base64,' . base64_encode($creation['lienImg']) // Convertit le BLOB en base64
+                         : 'default-avatar.png'; // Image par défaut si pas d'image
+                        ?>
                     <div class="article">
-                        <img src="article.jpg" alt="Article 1">
-                        <h3>Nom de l'Article</h3>
-                        <p>Prix: 29,99€</p>
+                        <img src="<?php echo $articlePicture; ?>" alt="Article 1">
+                        <h3><?php echo htmlspecialchars($creation['name']); ?></h3>
+                        <p>Prix: <?php echo htmlspecialchars($creation['prix']); ?>€</p>
                         <a href="modifier_article.php?id=1">Modifier</a>
                     </div>
-                    <div class="article">
-                        <img src="article.jpg" alt="Article 2">
-                        <h3>Nom de l'Article</h3>
-                        <p>Prix: 19,99€</p>
-                        <a href="modifier_article.php?id=2">Modifier</a>
-                    </div>
+                    <?php endforeach ?>
                 </div>
             </section>
 
-            <!-- Mes Achats -->
+            <!-- Mes Achats --> 
             <section class="my-purchases">
                 <h2>Mes Achats</h2>
                 <div class="purchases-list">
