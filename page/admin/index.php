@@ -45,8 +45,8 @@ $users = $users_stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= $article['name'] ?></td>
                         <td><?= $article['auteur_ID'] ?></td>
                         <td>
-                            <a href="edit_post.php?id=<?= $post['id'] ?>">Modifier</a> |
-                            <a href="delete_post.php?id=<?= $post['id'] ?>">Supprimer</a>
+                            <a href="edit_post.php?id=<?= $article['article_id'] ?>">Modifier</a> |
+                            <a href="delete_post.php?id=<?= $article['article_id'] ?>">Supprimer</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
