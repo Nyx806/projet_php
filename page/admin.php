@@ -49,7 +49,7 @@ if ($_SESSION['role'] !== 1) {
                         <td><?= $article['auteur_ID'] ?></td>
                         <td>
                             <a href="edit_post.php?id=<?= $article['article_id'] ?>">Modifier</a> |
-                            <a href="delete_post.php?id=<?= $article['article_id'] ?>">Supprimer</a>
+                            <a href="delete_article_admin.php?id=<?= $article['article_id'] ?>">Supprimer</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
