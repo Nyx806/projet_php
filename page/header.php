@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar</title>
-    <link rel="stylesheet" href="../style/header.css">
-</head>
-
 <?php
 session_start();
 include 'config.php';
@@ -32,7 +23,14 @@ if ($isLoggedIn) {
     $profilePicture = null;
 }
 ?>
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="../style/header.css">
+</head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -62,6 +60,5 @@ if ($isLoggedIn) {
             <?php endif; ?>
         </div>
     </nav>
-
 </body>
 </html>

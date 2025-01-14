@@ -1,3 +1,8 @@
+<?php
+// Active le tampon de sortie pour éviter les problèmes de header
+ob_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -44,7 +49,8 @@ try {
             $stock_result = $stock_stmt->execute(['article_id' => $article_id,'stock' => $stock]);
 
             if ($stock_result) {
-                header('Location: home.php'); // Décommentez après test
+                // Redirection vers la page de détails
+                header('Location: detail.php?id=' . $article_id);
                 exit;
             } else {
                 echo 'Erreur lors de l\'ajout du stock : ';
@@ -61,7 +67,6 @@ try {
     echo 'Erreur générale : ' . $e->getMessage();
 }
 ?>
-
 
 <body>
     <!-- Formulaire de création d'article -->
@@ -103,4 +108,8 @@ try {
     </main>
 </body>
 <?php include 'footer.php' ?>
-</html>
+
+<?php
+// Envoie tout le contenu tamponné et désactive le tampon
+ob_end_flush();
+?>
