@@ -104,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-actions">
                 <button type="submit">Mettre à jour</button>
                 <a href="admin.php" class="cancel-button">Annuler</a>
+                <a href="admin.php" class="back-button">Retour au Dashboard</a>
             </div>
         </form>
     </div>
