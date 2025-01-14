@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php'; // Fichier de connexion à la base de données
+include 'config.php'; // Fichier de connexion à la base de données
 
 
 
@@ -21,7 +21,7 @@ $users = $users_stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panneau d'administration</title>
-    <link rel="stylesheet" href="../../style/dashbord.css">
+    <link rel="stylesheet" href="../style/dashbord.css">
 </head>
 <body>
     <div class="admin-container">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php'; // Connexion à la base de données
+include 'config.php'; // Connexion à la base de données
 
 
 
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier l'Article</title>
-    <link rel="stylesheet" href="../../style/edit_post.css">
+    <link rel="stylesheet" href="../style/edit_post.css">
 </head>
 <body>
     <div class="admin-container">
