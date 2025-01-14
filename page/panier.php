@@ -78,7 +78,12 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes s
                             <td><?php echo htmlspecialchars($article['name']); ?></td>
                             <td><?php echo htmlspecialchars($article['prix']); ?>€</td>
                             <td>
-                                 <span id="article-count"><?= $article_count ?></span>
+                                <!-- Sélecteur de quantité -->
+                                <form action="update_quantity.php" method="POST">
+                                    <input type="number" name="quantity" value="<?php echo $article_count; ?>" min="1" required>
+                                    <input type="hidden" name="article_id" value="<?php echo $article['article_id']; ?>">
+                                    <button type="submit">Ajouter</button>
+                                </form>
                             </td>
                             <td class="total"><?= $total_price?>€</td>
                             <td>
