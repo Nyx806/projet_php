@@ -2,7 +2,10 @@
 session_start();
 include 'config.php'; // Connexion à la base de données
 
-
+if ($_SESSION['role'] !== 1) {
+    header('Location: home.php'); // Rediriger si l'utilisateur n'est pas administrateur
+    exit();
+}
 
 // Vérifier si l'ID de l'article est passé dans l'URL
 if (!isset($_GET['id']) || empty($_GET['id'])) {

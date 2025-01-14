@@ -13,7 +13,7 @@ include 'config.php';
 
 // Vérifie si l'utilisateur est connecté
 $isLoggedIn = isset($_SESSION['user_id']);
-
+$isAdmin = isset($_SESSION['role']);
 // Récupère les informations de l'utilisateur si connecté
 if ($isLoggedIn) {
     $user_id = $_SESSION['user_id'];
@@ -44,6 +44,9 @@ if ($isLoggedIn) {
                     <li><a href="vente.php">Vente</a></li>
                     <li><a href="panier.php">Panier</a></li>
                     <li><a href="compte.php">Mon Compte</a></li>
+                    <?php if ($isAdmin == '1') { ?>
+                        <li><a href="admin.php">Dashbord</a></li>
+                    <?php } ?>
                     <li><a href="logout.php">Déconnexion</a></li>
                 <?php else: ?>
                     <li><a href="inscription.php">Inscription</a></li>

@@ -2,17 +2,20 @@
 session_start();
 include 'config.php'; // Fichier de connexion à la base de données
 
+if ($_SESSION['role'] !== 1) {
+    header('Location: home.php'); // Rediriger si l'utilisateur n'est pas administrateur
+    exit();
+}
 
+    // Récupérer les articles
+    $posts_sql = "SELECT * FROM article";
+    $posts_stmt = $pdo->query($posts_sql);
+    $articles = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Récupérer les articles
-$posts_sql = "SELECT * FROM article";
-$posts_stmt = $pdo->query($posts_sql);
-$articles = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Récupérer les utilisateurs
-$users_sql = "SELECT * FROM user";
-$users_stmt = $pdo->query($users_sql);
-$users = $users_stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Récupérer les utilisateurs
+    $users_sql = "SELECT * FROM user";
+    $users_stmt = $pdo->query($users_sql);
+    $users = $users_stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
