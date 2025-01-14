@@ -12,9 +12,6 @@
 include 'header.php';
 include 'config.php';
 
-// Vérifie si l'utilisateur est connecté
-$isLoggedIn = isset($_SESSION['user_id']);
-
 // Récupérer les articles
 $sql = "SELECT article_id, name , description, prix, date, lienImg FROM article ORDER BY date DESC";
 $stmt = $pdo->prepare($sql);
@@ -43,11 +40,7 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Prix : <strong><?php echo htmlspecialchars($article['prix']); ?>€</strong></p>
             <p>Stock : <strong><?php echo htmlspecialchars($stock['nb_Stock'] ?? 0); ?></strong></p>
             <p class="date"><?php echo htmlspecialchars($article['date']); ?></p>
-            <?php if ($isLoggedIn): ?>
-                <button><a href="update_panier.php?id=<?php echo $article['article_id']; ?>">Acheter</a></button>
-            <?php else: ?>
-                <button><a href="login.php">Acheter</a></button>
-            <?php endif ?>
+            <button class="buy-button" data-article-id="<?php echo $article['article_id']; ?>">Acheter</button>
             <button><a href="detail.php?id=<?php echo $article['article_id']; ?>">Détails</a></button>
         </div>
     <?php endforeach; ?>
