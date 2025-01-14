@@ -38,7 +38,7 @@ $creations = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes 
 <body>
     <main>
         <div class="account-container">
-
+    
             <!-- Informations personnelles -->
             <section class="user-info">
                 <h2>Informations personnelles</h2>

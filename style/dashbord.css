@@ -58,3 +58,37 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.home-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.home-button:hover {
+    background-color: #0056b3;
+}
+
+table img {
+    width: 50px; /* Largeur de l'image */
+    height: 50px; /* Hauteur de l'image */
+    object-fit: cover; /* Ajuste l'image pour remplir les dimensions tout en conservant son ratio */
+    border-radius: 50%; /* Rend l'image circulaire */
+    border: 1px solid #ccc; /* Ajoute une bordure légère autour de l'image */
+    padding: 2px;
+    background-color: #fff; /* Couleur de fond pour un look propre */
+}
+
+
+.description {
+    max-width: 300px; /* Limite la largeur de la description */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ajoute "..." si le texte dépasse */
+}
