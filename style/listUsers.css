@@ -1,0 +1,75 @@
+/* Conteneur principal pour la liste des utilisateurs */
+.users-list-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+/* Titre de la page */
+.users-list-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #4a90e2;
+}
+
+/* Liste des utilisateurs en grille */
+.users-list {
+    display: flex;
+    flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
+    gap: 1rem; /* Espace entre les éléments */
+    justify-content: center; /* Centre les éléments horizontalement */
+    padding: 0;
+    list-style: none;
+}
+
+/* Chaque utilisateur en tant qu'élément de la grille */
+.users-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 200px; /* Largeur fixe pour chaque élément */
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.users-list li:hover {
+    transform: scale(1.05); /* Légère augmentation de taille au survol */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Informations de l'utilisateur */
+.user-info {
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.user-info:hover {
+    text-decoration: underline;
+}
+
+/* Avatar de l'utilisateur */
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Nom de l'utilisateur */
+.user-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+}
