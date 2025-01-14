@@ -25,8 +25,10 @@ if ($_SESSION['role'] !== 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panneau d'administration</title>
     <link rel="stylesheet" href="../style/dashbord.css">
-</head>
 <body>
+    <!-- Bouton Home -->
+    <a href="home.php" class="home-button">Home</a>
+
     <div class="admin-container">
         <h1>Dashbord Administrateur</h1>
 
