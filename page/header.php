@@ -41,6 +41,7 @@ if ($isLoggedIn) {
                 <?php if ($isLoggedIn): ?>
                     <li><a href="vente.php">Vente</a></li>
                     <li><a href="panier.php">Panier</a></li>
+                    <li><a href="listUsers.php">Utilisateurs</a></li>
                     <li><a href="compte.php">Mon Compte</a></li>
                     <li><a href="logout.php">Déconnexion</a></li>
                 <?php else: ?>
