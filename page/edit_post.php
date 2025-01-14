@@ -21,6 +21,11 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['id' => $article_id]);
 $article = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$stock_sql = "SELECT nb_Stock FROM stock WHERE article_ID = :article_ID";
+$stock_stmt = $pdo->prepare($stock_sql);
+$stock_stmt->execute(['article_ID' => $article['article_id']]);
+$stock = $stock_stmt->fetch(PDO::FETCH_ASSOC);
+
 // Vérifier si l'article existe
 if (!$article) {
     echo "Erreur: L'article n'existe pas.";
@@ -31,18 +36,30 @@ if (!$article) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['title'];
     $description = $_POST['content'];
+    $prix = $_POST['prix'];
+    $quantity = $_POST['stock'];
 
     // Mise à jour de l'article dans la base de données
-    $update_sql = "UPDATE article SET name = :name, description = :description WHERE article_id = :id";
+    $update_sql = "UPDATE article SET name = :name, description = :description, prix = :prix WHERE article_id = :id";
     $update_stmt = $pdo->prepare($update_sql);
     $update_stmt->execute([
         'name' => $name,
         'description' => $description,
+        'prix' => $prix,
         'id' => $article_id
     ]);
 
+    
+    $update_stock_sql = "UPDATE stock SET nb_Stock = :nbStock WHERE article_id = :id";
+    $update_stock_stmt = $pdo->prepare($update_stock_sql);
+    $update_stock_stmt->execute([
+        'nbStock' => $quantity,
+        'id' => $article_id
+    ]);
+
+
     // Rediriger vers la page d'administration après la mise à jour
-    header('Location: index.php');
+    header('Location: admin.php');
     exit();
 }
 ?>
@@ -66,10 +83,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="content">Contenu de l'article :</label>
             <textarea id="content" name="content" rows="6" required><?= htmlspecialchars($article['description']) ?></textarea>
 
+            <label for="title">Prix (€) :</label>
+            <input type="number" id="prix" name="prix" value="<?= htmlspecialchars($article['prix']) ?>" step="0.01" min="0" required>
+
+            <label for="title">Quantité :</label>
+            <input type="number" id="stock" name="stock" value="<?= htmlspecialchars($stock['nb_Stock']) ?>" min="1" required>
+
             <button type="submit">Mettre à jour l'article</button>
         </form>
 
-        <a href="index.php" class="back-link">Retour au tableau de bord</a>
+        <a href="admin.php" class="back-link">Retour au tableau de bord</a>
     </div>
 </body>
 </html>

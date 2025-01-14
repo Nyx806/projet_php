@@ -78,7 +78,7 @@ if ($_SESSION['role'] !== 1) {
                         <td><?= $user['role'] ?></td>
                         <td>
                             <a href="edit_user.php?id=<?= $user['user_ID'] ?>">Modifier</a> |
-                            <a href="delete_user.php?id=<?= $user['user_ID'] ?>">Supprimer</a>
+                            <a href="delete_user_admin.php?id=<?= $user['user_ID'] ?>">Supprimer</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
