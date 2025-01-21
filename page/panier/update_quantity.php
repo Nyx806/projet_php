@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include '../config.php';
 
 // Vérifier si la requête est en POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Rediriger vers la page du panier après la mise à jour
-    header('Location: panier.php');
+    header('Location: panier');
     exit();
 }
 ?>

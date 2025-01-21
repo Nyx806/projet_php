@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Panier</title>
-    <link rel="stylesheet" href="../style/panier.css">
+    <link rel="stylesheet" href="../../style/panier.css">
 </head>
 
 <?php
-include 'header.php';
-include 'config.php';
+include '../config.php';
+include '../assets/header.php';
 
 if (isset($_SESSION['error_message'])) {
     // Afficher le message d'erreur
@@ -108,12 +108,12 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes s
             <p>Solde disponible : <span id="solde"><?php echo $_SESSION['solde'] ?>€</span></p>
 
             <!-- Bouton de passage de commande -->
-            <button id="passer-commande" class="btn"><a href="confirmation.php?total=<?=$total_cart ?>">Passer la Commande</a></button>
+            <button id="passer-commande" class="btn"><a href="confirm/confirmation?total=<?=$total_cart ?>">Passer la Commande</a></button>
         </div>
     </main>
 </body>
 
-<?php include 'footer.php'; ?>
+<?php include '../assets/footer.php'; ?>
 
 
 </html>

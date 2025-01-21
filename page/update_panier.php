@@ -16,7 +16,7 @@ if( isset($_GET['id'])){
             $stock_sql = "UPDATE stock SET nb_Stock = nb_Stock - :increment WHERE article_ID = :article_id";
             $stmt = $pdo->prepare($stock_sql);
             $result = $stmt->execute(['increment' => $increment,'article_id'=> $article_id]);
-            $previousPage = $_SERVER['HTTP_REFERER'] ?? 'home.php';
+            $previousPage = $_SERVER['HTTP_REFERER'] ?? 'home';
 
             header("Location: $previousPage");
         }

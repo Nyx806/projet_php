@@ -135,3 +135,4 @@ Le projet comporte plusieurs fonctionnalités, allant de la gestion des utilisat
 
 ## Auteur
 
+Merlo Meyffren Antonin et Marc Reimen

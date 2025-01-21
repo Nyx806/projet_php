@@ -1,10 +1,10 @@
 <?php
 session_start();
-require 'config.php'; // Connexion à la base de données
+require '../config.php'; // Connexion à la base de données
 
 // Vérifie si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
 
@@ -23,11 +23,11 @@ if (isset($_POST['article_id'])) {
     ]);
 
     // Rediriger l'utilisateur vers la page du panier
-    $previousPage = $_SERVER['HTTP_REFERER'] ?? 'home.php';
+    $previousPage = $_SERVER['HTTP_REFERER'] ?? 'home';
     header("Location: $previousPage");
     exit();
 } else {
     // Si l'article ID n'est pas fourni, redirige vers le panier
-    header("Location: panier.php");
+    header("Location: panier");
     exit();
 }

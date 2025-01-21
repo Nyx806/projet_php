@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de Connexion</title>
     <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="../style/login.css">
+    <link rel="stylesheet" href="../../style/login.css">
 </head>
 
 <?php 
-include 'config.php';
+include '../config.php';
 
 $message = '';
 
@@ -30,7 +30,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
         $_SESSION['photoProfil'] = $user['photoProfil'];
         $_SESSION['role'] = $user['role'];
         
-        header('Location: home.php');
+        header('Location:'  . BASE_URL . '/page/home');
     } else {
         $message = 'Mauvais identifiant';
     }
@@ -42,11 +42,11 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 
     <!-- Bouton Home en haut à gauche -->
     <div class="navbar">
-        <a href="home.php" class="home-btn">Home</a>
+        <a href="<?php echo BASE_URL; ?>/page/home" class="home-btn">Home</a>
     </div>
 
     <div class="login-container">
-        <form action="login.php" method="POST" class="login-form">
+        <form action="login" method="POST" class="login-form">
             <h2>Connexion</h2>
             <!-- Champ pour le nom d'utilisateur -->
             <div class="input-group">
@@ -66,7 +66,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
             <!-- Lien pour s'inscrire ou récupérer un mot de passe -->
             <div class="links">
                 <a href="">Mot de passe oublié ?</a>
-                <a href="inscription.php">Créer un compte</a>
+                <a href="<?php echo BASE_URL; ?>/page/authentification/inscription">Créer un compte</a>
             </div>
         </form>
     </div>

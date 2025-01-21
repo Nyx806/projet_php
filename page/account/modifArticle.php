@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer un Article à Vendre</title>
     <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="../style/vente.css">
+    <link rel="stylesheet" href="../../style/vente.css">
 </head>
 
 <?php
-include 'header.php';
-include 'config.php';
+ob_start();
+include '../config.php';
+include '../assets/header.php';
 
 
 if (isset($_GET['id'])){
@@ -85,7 +86,7 @@ if (isset($_GET['id'])){
         
                 if ($stock_result) {
                     echo 'Article et stock mis à jour avec succès !';
-                    header('Location: home.php'); // Redirige vers la page d'accueil après mise à jour
+                    header('Location: compte'); // Redirige vers la page d'accueil après mise à jour
                     exit;
                 } else {
                     echo 'Erreur lors de la mise à jour du stock : ';
@@ -103,6 +104,8 @@ if (isset($_GET['id'])){
         echo 'Erreur générale : ' . $e->getMessage();
     }
 }
+
+ob_end_flush();
 ?>
 
 
@@ -143,9 +146,9 @@ if (isset($_GET['id'])){
             </div>
 
             <!-- Bouton de soumission -->
-            <button type="submit" class="btn">Ajouter l'Article</button>
+            <button type="submit" class="btn">Modifier l'Article</button>
         </form>
     </main>
 </body>
-<?php include 'footer.php' ?>
+<?php include '../assets/footer.php' ?>
 </html>

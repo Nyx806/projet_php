@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création de Facture</title>
-    <link rel="stylesheet" href="../style/confirmation.css">
+    <link rel="stylesheet" href="../../../style/confirmation.css">
 </head>
 
 <?php 
-include 'header.php'; 
+include '../../config.php';
+include '../../assets/header.php'; 
 $montant = $_GET['total'];
 ?>
 
@@ -52,6 +53,6 @@ $montant = $_GET['total'];
     </main>
 </body>
 
-<?php include 'footer.php' ?>
+<?php include '../../assets/footer.php' ?>
 
 </html>

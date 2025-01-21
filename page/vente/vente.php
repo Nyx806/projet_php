@@ -10,12 +10,12 @@ ob_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer un Article à Vendre</title>
     <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="../style/vente.css">
+    <link rel="stylesheet" href="../../style/vente.css">
 </head>
 
 <?php
-include 'header.php';
-include 'config.php';
+include '../config.php';
+include '../assets/header.php';
 
 try {
     if (isset($_POST['nom'], $_POST['description'], $_POST['prix'], $_POST['stock'], $_FILES['image'])) {
@@ -50,7 +50,7 @@ try {
 
             if ($stock_result) {
                 // Redirection vers la page de détails
-                header('Location: detail.php?id=' . $article_id);
+                header('Location:' . BASE_URL . 'page   /detail/detail?id=' . $article_id);
                 exit;
             } else {
                 echo 'Erreur lors de l\'ajout du stock : ';
@@ -107,7 +107,7 @@ try {
         </form>
     </main>
 </body>
-<?php include 'footer.php' ?>
+<?php include '../assets/footer.php' ?>
 
 <?php
 // Envoie tout le contenu tamponné et désactive le tampon

@@ -1,10 +1,10 @@
 <?php
 session_start();
-require 'config.php'; // Connexion à la base de données
+require '../config.php'; // Connexion à la base de données
 
 // Vérifie si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
 

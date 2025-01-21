@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Compte</title>
-    <link rel="stylesheet" href="../style/compte.css">
+    <link rel="stylesheet" href="../../style/compte.css">
 </head>
 
-<?php 
-include 'header.php';
+<?php
+include '../config.php'; 
+include '../assets/header.php';
 
 $isLoggedIn = isset($_SESSION['user_id']);
 $user_id = $_SESSION['user_id'];
@@ -42,7 +43,7 @@ $creations = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes 
             <!-- Informations personnelles -->
             <section class="user-info">
                 <h2>Informations personnelles</h2>
-                <form action="update_compte.php" method="POST" enctype="multipart/form-data">
+                <form action="update_compte" method="POST" enctype="multipart/form-data">
                     <div class="user-info">
                         <img src="<?php echo $profilePicture; ?>" alt="Photo de profil" class="profile-pic">                       
                         <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
@@ -81,7 +82,7 @@ $creations = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes 
                 </div>
 
                 <!-- Formulaire pour ajouter de l'argent -->
-                <form action="update_solde.php" method="POST">
+                <form action="update_solde" method="POST">
                     <div class="add-balance">
                         <label for="add_amount">Ajouter un montant :</label>
                         <div class="input-group">
@@ -106,8 +107,8 @@ $creations = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes 
                         <img src="<?php echo $articlePicture; ?>" alt="Article 1">
                         <h3><?php echo htmlspecialchars($creation['name']); ?></h3>
                         <p>Prix: <?php echo htmlspecialchars($creation['prix']); ?>€</p>
-                        <a href="modifArticle.php?id=<?= htmlspecialchars($creation['article_id']) ?>">Modifier</a>
-                        <a href="delete_from_compte.php?id=<?= htmlspecialchars($creation['article_id']) ?>">Suprimer</a>
+                        <a href="modifArticle?id=<?= htmlspecialchars($creation['article_id']) ?>">Modifier</a>
+                        <a href="delete_from_compte?id=<?= htmlspecialchars($creation['article_id']) ?>">Suprimer</a>
                     </div>
                     <?php endforeach ?>
                 </div>
@@ -143,6 +144,6 @@ $creations = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupère toutes les lignes 
     </main>
 </body>
 
-<?php include 'footer.php' ?>
+<?php include '../assets/footer.php' ?>
 
 </html>

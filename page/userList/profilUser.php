@@ -1,6 +1,6 @@
 <?php 
-include 'config.php';
-include 'header.php';
+include '../config.php';
+include '../assets/header.php';
 
 // Vérifie si l'ID utilisateur est passé dans l'URL
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -51,7 +51,7 @@ $profilePicture = !empty($user['photoProfil'])
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil de <?php echo htmlspecialchars($username); ?></title>
-    <link rel="stylesheet" href="../style/compte.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/style/compte.css">
 </head>
 
 <body>
@@ -84,8 +84,6 @@ $profilePicture = !empty($user['photoProfil'])
                         <img src="<?php echo $articlePicture; ?>" alt="Article 1">
                         <h3><?php echo htmlspecialchars($creation['name']); ?></h3>
                         <p>Prix: <?php echo htmlspecialchars($creation['prix']); ?>€</p>
-                        <a href="modifArticle.php?id=<?= htmlspecialchars($creation['article_id']) ?>">Modifier</a>
-                        <a href="delete_from_compte.php?id=<?= htmlspecialchars($creation['article_id']) ?>">Supprimer</a>
                     </div>
                     <?php endforeach ?>
                 </div>
@@ -94,6 +92,6 @@ $profilePicture = !empty($user['photoProfil'])
     </main>
 </body>
 
-<?php include 'footer.php'; ?>
+<?php include '../assets/footer.php'; ?>
 
 </html>

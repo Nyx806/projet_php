@@ -1,10 +1,10 @@
 <?php
 session_start();
-include 'config.php'; // Connexion à la base de données
+include '../config.php'; // Connexion à la base de données
 
 // Vérifier si l'utilisateur est administrateur
 if ($_SESSION['role'] !== 1) {
-    header('Location: home.php'); // Redirection si non admin
+    header('Location: home'); // Redirection si non admin
     exit();
 }
 
@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'user_id' => $user_id,
         ];
 
+
         // Mettre à jour le mot de passe uniquement s'il est fourni
         if (!empty($password)) {
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
@@ -53,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare($update_sql);
         $stmt->execute($params);
         $success = "Les informations de l'utilisateur ont été mises à jour avec succès.";
+        header('Location:' . BASE_URL . 'page/admin/admin');
     }
 }
 ?>
@@ -63,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier Utilisateur</title>
-    <link rel="stylesheet" href="../style/edit_user.css">
+    <link rel="stylesheet" href="../../style/edit_user.css">
 </head>
 <body>
     <div class="edit-user-container">
@@ -103,8 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-actions">
                 <button type="submit">Mettre à jour</button>
-                <a href="admin.php" class="cancel-button">Annuler</a>
-                <a href="admin.php" class="back-button">Retour au Dashboard</a>
+                <a href="admin" class="cancel-button">Annuler</a>
+                <a href="admin" class="back-button">Retour au Dashboard</a>
             </div>
         </form>
     </div>

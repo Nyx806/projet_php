@@ -1,5 +1,5 @@
 <?php 
-include 'config.php';
+include '../config.php';
 session_start();
 
 $message = '';
@@ -28,7 +28,7 @@ try {
             
             // Message de succès dans la session
             $_SESSION['message'] = 'Changement réussi';
-            header('Location: compte.php');
+            header('Location: compte');
             
         } else {
             $message = 'Erreur lors du changement des informations';
@@ -55,7 +55,7 @@ try {
             $result = $stmt->execute(['newPassword' => $newPassword, 'id' => $_SESSION['user_id']]);
             if ($result) {
                 $_SESSION['message'] = 'Mot de passe modifié avec succès';
-                header('Location: compte.php');
+                header('Location: compte');
                 
             } else {
                 $message = 'Erreur lors du changement du mot de passe';
@@ -74,7 +74,7 @@ try {
         
         if ($result) {
             $_SESSION['message'] = 'photo modifier avec succès';
-            header('Location: compte.php');
+            header('Location: compte');
             exit;
         } else {
             $message = 'Erreur lors de l\'upload de la photo';

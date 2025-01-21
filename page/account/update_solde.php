@@ -1,11 +1,11 @@
 <?php
-include 'config.php';
+include '../config.php';
 session_start();
 
 
 // Vérifiez si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: login");
     exit;
 }
 
@@ -32,7 +32,7 @@ if (isset($_POST['add_amount'])) {
 
                     // Mettre à jour la session avec le nouveau solde
                     $_SESSION['solde'] = $newSolde;
-                    header('Location: compte.php');
+                    header('Location: compte');
 
                 }
             
