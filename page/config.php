@@ -1,5 +1,7 @@
 <?php 
-$host = 'localhost';
+if (!defined('BASE_URL')) {
+    define('BASE_URL', '/projet_php/');
+}$host = 'localhost';
 $db = 'ecommerce';
 $user = 'root';
 $pass = '';

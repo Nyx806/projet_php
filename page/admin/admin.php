@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'config.php'; // Fichier de connexion à la base de données
+include '../config.php'; // Fichier de connexion à la base de données
 
 if ($_SESSION['role'] !== 1) {
-    header('Location: home.php'); // Rediriger si l'utilisateur n'est pas administrateur
+    header('Location:' . BASE_URL . 'home'); // Rediriger si l'utilisateur n'est pas administrateur
     exit();
 }
 
@@ -26,11 +26,11 @@ $users = $users_stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panneau d'administration</title>
-    <link rel="stylesheet" href="../style/dashbord.css">
+    <link rel="stylesheet" href="../../style/dashbord.css">
 </head>
 <body>
     <!-- Bouton Home -->
-    <a href="home.php" class="home-button">Home</a>
+    <a href="<?php echo BASE_URL; ?>/page/home" class="home-button">Home</a>
 
     <div class="admin-container">
         <h1>Dashboard Administrateur</h1>
@@ -65,8 +65,8 @@ $users = $users_stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= $stock['nb_Stock'] ?></td>
                         <td><?= $article['auteur_ID'] ?></td>
                         <td>
-                            <a href="edit_post.php?id=<?= $article['article_id'] ?>">Modifier</a> |
-                            <a href="delete_article_admin.php?id=<?= $article['article_id'] ?>">Supprimer</a>
+                            <a href="edit_post?id=<?= $article['article_id'] ?>">Modifier</a> |
+                            <a href="delete_article_admin?id=<?= $article['article_id'] ?>">Supprimer</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -102,8 +102,8 @@ $users = $users_stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= htmlspecialchars($user['email']) ?></td>
                         <td><?= $user['role'] ?></td>
                         <td>
-                            <a href="edit_user.php?id=<?= $user['user_ID'] ?>">Modifier</a> |
-                            <a href="delete_user_admin.php?id=<?= $user['user_ID'] ?>">Supprimer</a>
+                            <a href="edit_user?id=<?= $user['user_ID'] ?>">Modifier</a> |
+                            <a href="delete_user_admin?id=<?= $user['user_ID'] ?>">Supprimer</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

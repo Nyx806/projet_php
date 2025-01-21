@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'config.php'; // Connexion à la base de données
+include '../config.php'; // Connexion à la base de données
 
 if ($_SESSION['role'] !== 1) {
-    header('Location: home.php'); // Rediriger si l'utilisateur n'est pas administrateur
+    header('Location:'. BASE_URL . '/page/home'); // Rediriger si l'utilisateur n'est pas administrateur
     exit();
 }
 
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // Rediriger vers la page d'administration après la mise à jour
-    header('Location: admin.php');
+    header('Location: admin');
     exit();
 }
 ?>
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier l'Article</title>
-    <link rel="stylesheet" href="../style/edit_post.css">
+    <link rel="stylesheet" href="../../style/edit_post.css">
 </head>
 <body>
     <div class="admin-container">
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Mettre à jour l'article</button>
         </form>
 
-        <a href="admin.php" class="back-link">Retour au tableau de bord</a>
+        <a href="admin" class="back-link">Retour au tableau de bord</a>
     </div>
 </body>
 </html>

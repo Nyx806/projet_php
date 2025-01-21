@@ -9,8 +9,8 @@
 </head>
 
 <?php
-include 'header.php';
 include 'config.php';
+include 'assets/header.php';
 
 // Récupérer les articles
 $sql = "SELECT article_id, name , description, prix, date, lienImg FROM article ORDER BY date DESC";
@@ -40,12 +40,13 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Prix : <strong><?php echo htmlspecialchars($article['prix']); ?>€</strong></p>
             <p>Stock : <strong><?php echo htmlspecialchars($stock['nb_Stock'] ?? 0); ?></strong></p>
             <p class="date"><?php echo htmlspecialchars($article['date']); ?></p>
-            <button class="buy-button"><a href="update_panier.php?id=<?php echo $article['article_id']; ?>">Acheter</a></button>
-            <button><a href="detail.php?id=<?php echo $article['article_id']; ?>">Détails</a></button>
+            
+            <button class="buy-button"><a href="update_panier?id=<?php echo $article['article_id']; ?>">Acheter</a></button>
+            <button><a href="<?php echo BASE_URL; ?>page/detail/detail?id=<?php echo $article['article_id']; ?>">Détails</a></button>
         </div>
     <?php endforeach; ?>
     </main>
 </body>
 
-<?php include 'footer.php' ?>
+<?php include 'assets/footer.php' ?>
 </html>

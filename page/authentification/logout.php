@@ -1,5 +1,5 @@
 <?php
-
+include '../config.php';
 session_start();
 
 // Supprimer toutes les variables de session.
@@ -19,7 +19,7 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Rediriger vers la page de connexion.
-header('Location: home.php');
+header('Location: ' . BASE_URL .'/page/home');
 exit;
 
 ?>

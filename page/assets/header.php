@@ -1,6 +1,5 @@
 <?php
 session_start();
-include 'config.php';
 
 // Vérifie si l'utilisateur est connecté
 $isLoggedIn = isset($_SESSION['user_id']);
@@ -28,33 +27,34 @@ if ($isLoggedIn) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar</title>
-    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>style/header.css">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <a href="home.php" class="logo">E-Commerce</a>
+            <a href="<?php echo BASE_URL; ?>/page/home" class="logo">E-Commerce</a>
             <ul class="nav-links">
-                <li><a href="home.php">Home</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/page/home">Home</a></li>
                 <?php if ($isLoggedIn): ?>
-                    <li><a href="vente.php">Vente</a></li>
-                    <li><a href="panier.php">Panier</a></li>
-                    <li><a href="listUsers.php">Utilisateurs</a></li>
-                    <li><a href="compte.php">Mon Compte</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>page/vente/vente">Vente</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>page/panier/panier">Panier</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>page/account/compte">Mon Compte</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>page/userList/listUsers">Utilisateurs</a></li>
                     <?php if ($_SESSION['role'] == 1) { ?>
-                        <li><a href="admin.php">Dashbord</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>page/admin/admin">Dashbord</a></li>
                     <?php } ?>
-                    <li><a href="logout.php">Déconnexion</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>page/authentification/logout">Déconnexion</a></li>
                 <?php else: ?>
-                    <li><a href="inscription.php">Inscription</a></li>
-                    <li><a href="login.php">Connexion</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>page/userList/listUsers">Utilisateurs</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>page/authentification/inscription">Inscription</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>page/authentification/login">Connexion</a></li>
                 <?php endif; ?>
             </ul>
 
             <!-- Affichage du nom et de la photo de profil -->
             <?php if ($isLoggedIn): ?>
-                <a href="compte.php" class="clickable-div">
+                <a href="<?php echo BASE_URL; ?>page/account/compte" class="clickable-div">
                     <div class="user-info-nav">
                         <img src="<?php echo $profilePicture; ?>" alt="Photo de profil" class="profile-pic">
                         <span class="username"><?php echo htmlspecialchars($username); ?></span>    

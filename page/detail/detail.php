@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détail du Produit</title>
-    <link rel="stylesheet" href="../style/detail.css">
+    <link rel="stylesheet" href="../../style/detail.css">
 </head>
 
 <?php 
-include 'header.php';
-include 'config.php';
+include '../config.php';
+include '../assets/header.php';
 
 // Vérifier si l'ID est passé dans l'URL
 if (isset($_GET['id'])) {
@@ -54,14 +54,14 @@ if (isset($_GET['id'])) {
                 <p class="availability">Disponibilité: En stock</p>
 
                 <!-- Bouton ajouter au panier -->
-                <form action="ajouter_au_panier.php" method="POST">
-                    <button><a href="update_panier.php?id=<?php echo $article['article_id']; ?>">Ajouter au panier</a></button>
+                <form action="../update_panier.php?id=<?php echo $article['article_id']; ?>" method="POST">
+                    <button>Ajouter au panier</button>
                 </form>
             </div>
         </div>
     </main>
 </body>
 
-<?php include 'footer.php' ?>
+<?php include '../assets/footer.php' ?>
 
 </html>

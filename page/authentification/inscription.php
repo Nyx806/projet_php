@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page d'Inscription</title>
     <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="../style/inscription.css">
+    <link rel="stylesheet" href="../../style/inscription.css">
 </head>
 
 <?php 
-include 'config.php';
+include '../config.php';
 session_start();
 $message = '';
 
@@ -44,7 +44,7 @@ if(isset($_POST['username'],$_POST['password'],$_POST['email'])){
     
         if ($result) {
             $message = 'Inscription réussie!';
-            header('Location: login.php');
+            header('Location:' . BASE_URL . '/page/authentification/login');
         } else {
             $message = 'Erreur lors de l\'inscription.';
         }
@@ -55,7 +55,7 @@ if(isset($_POST['username'],$_POST['password'],$_POST['email'])){
 
 <body>
     <!-- Bouton Home en haut à gauche -->
-    <a href="home.php" class="home-btn">Home</a>
+    <a href="<?php echo BASE_URL; ?>/page/home" class="home-btn">Home</a>
 
     <div class="signup-container">
         <form action="#" method="POST" class="signup-form" enctype="multipart/form-data">
@@ -99,7 +99,7 @@ if(isset($_POST['username'],$_POST['password'],$_POST['email'])){
 
             <!-- Lien pour se connecter si déjà inscrit -->
             <div class="links">
-                <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous</a></p>
+                <p>Vous avez déjà un compte ? <a href="login">Connectez-vous</a></p>
             </div>
         </form>
     </div>
