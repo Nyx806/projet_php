@@ -40,50 +40,11 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Prix : <strong><?php echo htmlspecialchars($article['prix']); ?>€</strong></p>
             <p>Stock : <strong><?php echo htmlspecialchars($stock['nb_Stock'] ?? 0); ?></strong></p>
             <p class="date"><?php echo htmlspecialchars($article['date']); ?></p>
-            <button class="buy-button" data-article-id="<?php echo $article['article_id']; ?>">Acheter</button>
+            <button class="buy-button"><a href="update_panier.php?id=<?php echo $article['article_id']; ?>">Acheter</a></button>
             <button><a href="detail.php?id=<?php echo $article['article_id']; ?>">Détails</a></button>
         </div>
     <?php endforeach; ?>
     </main>
-
-    <!-- Fenêtre Popup -->
-    <div id="popup" class="popup">
-        <p>Article ajouté au panier</p>
-    </div>
-
-    <div id="popupOverlay" class="popup-overlay"></div>
-
-    <script>
-        // Récupérer les éléments de la popup
-        const popup = document.getElementById('popup');
-        const overlay = document.getElementById('popupOverlay');
-        const buyButtons = document.querySelectorAll('.buy-button');
-
-        let articleIdToBuy = null;
-
-        // Afficher la popup lorsqu'on clique sur "Acheter"
-        buyButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                articleIdToBuy = this.getAttribute('data-article-id');
-                popup.style.display = 'block';
-                overlay.style.display = 'block';
-
-                // Fermer la popup après 1 seconde
-                setTimeout(() => {
-                    popup.style.display = 'none';
-                    overlay.style.display = 'none';
-                    // Rediriger vers la page d'achat
-                    window.location.href = 'update_panier.php?id=' + articleIdToBuy;
-                }, 1000); // Ferme après 1 seconde
-            });
-        });
-
-        // Fermer la popup si l'utilisateur clique en dehors de celle-ci
-        overlay.addEventListener('click', function() {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
-        });
-    </script>
 </body>
 
 <?php include 'footer.php' ?>
