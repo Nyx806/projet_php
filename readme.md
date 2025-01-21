@@ -124,13 +124,13 @@ Le projet comporte plusieurs fonctionnalités, allant de la gestion des utilisat
 ### Configuration
 
 1. Cloner votre dépôt dans le répertoire `htdocs` de XAMPP.
-2. Créer une base de données dans phpMyAdmin et importer le fichier `database.sql` fourni.
+2. Créer une base de données dans phpMyAdmin et importer le fichier `ecommerce.sql` fourni.
 3. Configurer les identifiants de connexion à la base de données dans le fichier `config.php`.
 
 ### Lancer le projet
 
 1. Démarrez Apache et MySQL depuis le panneau de contrôle XAMPP.
-2. Accédez au projet via `http://localhost/NOM_DU_PROJET`.
+2. Accédez au projet via `http://localhost/projet_php/page/home`.
 3. Pour accéder à la partie admin il faudra modifier le role de l'un des utilisateur créer avec l'interface de phpMyAdmin pour le mettre à 1 (il est a 0 par défaut, 0 étant les utilisateur normaux)
 
 ## Auteur
